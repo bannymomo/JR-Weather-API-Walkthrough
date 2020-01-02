@@ -18,7 +18,10 @@ if (process.env.NODE_ENV === "development") {
 
 const logger = require("./utils/logger");
 const routes = require("./routes");
+const notFoundHandler = require("./middleware/notFound");
+
 app.use("", routes);
+app.use(notFoundHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
