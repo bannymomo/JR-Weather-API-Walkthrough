@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const APPID = process.env.APPID;
 
 router.get("/:cc/:city", function(req, res) {
   const { countrycode, city } = req.params;
   axios
     .get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${countrycode}&APPID=2e23d2a231c9054fd090aed70be4c12b`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${countrycode}&APPID=${APPID}`
     )
     .then(function(response) {
       res.send(response.data);
