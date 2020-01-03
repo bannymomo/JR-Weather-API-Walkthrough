@@ -1,17 +1,18 @@
 const express = require("express");
+const weather = require("../models/Weather");
 const router = express.Router();
 const axios = require("../utils/axios");
 const APPID = process.env.APPID;
 
-router.get("/:cc/:city", function(req, res) {
+router.get("/:city/:countrycode", function(req, res) {
   const { countrycode, city } = req.params;
-  axios
-    .get(`/weather?q=${city},${countrycode}&APPID=${APPID}`)
+  weather
+    .getData(city, countrycode)
     .then(function(response) {
-      res.send(response.data);
+      res.send(response);
     })
     .catch(function(error) {
-      console.log(error);
+      return console.log(error);
     });
 });
 
