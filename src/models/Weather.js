@@ -6,8 +6,8 @@ const APPID = process.env.APPID;
 
 class Weather {
   constructor() {}
-  getData(city, countrycode, weatherType) {
-    return Promise.all(getWeatherData(city, countrycode)).then(function(
+  getData(countrycode, city, weatherType) {
+    return Promise.all(getWeatherData(countrycode, city)).then(function(
       dataArray
     ) {
       const current = dataArray[0].data;
@@ -28,7 +28,7 @@ class Weather {
 
 module.exports = new Weather();
 
-function getWeatherData(city, countrycode) {
+function getWeatherData(countrycode, city) {
   const urls = ["/weather", "/forecast"];
   return urls.map(function(i) {
     return axios.get(i, {
