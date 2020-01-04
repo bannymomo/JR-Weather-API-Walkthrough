@@ -1,5 +1,7 @@
+const responseFormatter = require("../utils/responseFormatter");
+
 function notFound(req, res, next) {
-  res.sendStatus(404);
+  responseFormatter(res, 404, "Not found", null);
 }
 
 module.exports = notFound;
