@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "morgan": "^1.9.1",
+    "pm2": "^4.2.1",
     "winston": "^3.2.1"
   },
   "devDependencies": {
