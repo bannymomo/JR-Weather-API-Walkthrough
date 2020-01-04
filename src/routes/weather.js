@@ -4,8 +4,9 @@ const router = express.Router();
 const axios = require("../utils/axios");
 const responseFormatter = require("../utils/responseFormatter");
 const APPID = process.env.APPID;
+const countryCheck = require("../middleware/countryCheck");
 
-router.get("/:countrycode/:city", function(req, res) {
+router.get("/:countrycode/:city", countryCheck, function(req, res, next) {
   const { countrycode, city } = req.params;
   const weatherType = req.query.weatherType;
   weather
@@ -14,7 +15,7 @@ router.get("/:countrycode/:city", function(req, res) {
       responseFormatter(res, 200, null, response);
     })
     .catch(function(error) {
-      return console.log(error);
+      return next(error);
     });
 });
 
